@@ -51,3 +51,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Trailblazer bundle
+gem 'dry-types'
+gem 'dry-validation', '0.11.1'
+gem 'trailblazer-rails'
