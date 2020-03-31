@@ -5,12 +5,10 @@ class CreateDeals < ActiveRecord::Migration[6.0]
       t.integer :result
       t.integer :score
       t.boolean :double, deault: false
-
+      t.column :dealer, :player_position
+      t.column :player, :player_position
+      t.column :zone, :deal_zone
       t.timestamps
     end
-
-    add_column :deals, :dealer, :player_position
-    add_column :deals, :player, :player_position
-    add_column :deals, :zone, :deal_zone
   end
 end
