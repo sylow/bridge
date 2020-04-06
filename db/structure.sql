@@ -64,17 +64,51 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: deal_sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.deal_sessions (
+    id bigint NOT NULL,
+    deal_id bigint,
+    north_id bigint,
+    south_id bigint,
+    east_id bigint,
+    west_id bigint,
+    contract character varying,
+    result integer,
+    score integer,
+    player public.player_position,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: deal_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.deal_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: deal_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.deal_sessions_id_seq OWNED BY public.deal_sessions.id;
+
+
+--
 -- Name: deals; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.deals (
     id bigint NOT NULL,
-    contract character varying,
-    result integer,
-    score integer,
-    double boolean,
     dealer public.player_position,
-    player public.player_position,
     zone public.deal_zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
@@ -98,6 +132,40 @@ CREATE SEQUENCE public.deals_id_seq
 --
 
 ALTER SEQUENCE public.deals_id_seq OWNED BY public.deals.id;
+
+
+--
+-- Name: hands; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.hands (
+    id bigint NOT NULL,
+    seat public.player_position,
+    spades character varying[] DEFAULT '{}'::character varying[],
+    hearts character varying[] DEFAULT '{}'::character varying[],
+    diamonds character varying[] DEFAULT '{}'::character varying[],
+    clubs character varying[] DEFAULT '{}'::character varying[],
+    player_id bigint NOT NULL
+);
+
+
+--
+-- Name: hands_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.hands_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: hands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.hands_id_seq OWNED BY public.hands.id;
 
 
 --
@@ -143,10 +211,24 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
+-- Name: deal_sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.deal_sessions ALTER COLUMN id SET DEFAULT nextval('public.deal_sessions_id_seq'::regclass);
+
+
+--
 -- Name: deals id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.deals ALTER COLUMN id SET DEFAULT nextval('public.deals_id_seq'::regclass);
+
+
+--
+-- Name: hands id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hands ALTER COLUMN id SET DEFAULT nextval('public.hands_id_seq'::regclass);
 
 
 --
@@ -165,11 +247,27 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
+-- Name: deal_sessions deal_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.deal_sessions
+    ADD CONSTRAINT deal_sessions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: deals deals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.deals
     ADD CONSTRAINT deals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: hands hands_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hands
+    ADD CONSTRAINT hands_pkey PRIMARY KEY (id);
 
 
 --
@@ -189,6 +287,88 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: index_deal_sessions_on_deal_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deal_sessions_on_deal_id ON public.deal_sessions USING btree (deal_id);
+
+
+--
+-- Name: index_deal_sessions_on_east_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deal_sessions_on_east_id ON public.deal_sessions USING btree (east_id);
+
+
+--
+-- Name: index_deal_sessions_on_north_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deal_sessions_on_north_id ON public.deal_sessions USING btree (north_id);
+
+
+--
+-- Name: index_deal_sessions_on_south_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deal_sessions_on_south_id ON public.deal_sessions USING btree (south_id);
+
+
+--
+-- Name: index_deal_sessions_on_west_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deal_sessions_on_west_id ON public.deal_sessions USING btree (west_id);
+
+
+--
+-- Name: index_hands_on_player_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_hands_on_player_id ON public.hands USING btree (player_id);
+
+
+--
+-- Name: deal_sessions fk_rails_0f0b51bdbd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.deal_sessions
+    ADD CONSTRAINT fk_rails_0f0b51bdbd FOREIGN KEY (south_id) REFERENCES public.users(id);
+
+
+--
+-- Name: deal_sessions fk_rails_10eb578802; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.deal_sessions
+    ADD CONSTRAINT fk_rails_10eb578802 FOREIGN KEY (west_id) REFERENCES public.users(id);
+
+
+--
+-- Name: deal_sessions fk_rails_274be5b53d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.deal_sessions
+    ADD CONSTRAINT fk_rails_274be5b53d FOREIGN KEY (east_id) REFERENCES public.users(id);
+
+
+--
+-- Name: hands fk_rails_3ec9fa93ff; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hands
+    ADD CONSTRAINT fk_rails_3ec9fa93ff FOREIGN KEY (player_id) REFERENCES public.users(id);
+
+
+--
+-- Name: deal_sessions fk_rails_90c229ced0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.deal_sessions
+    ADD CONSTRAINT fk_rails_90c229ced0 FOREIGN KEY (north_id) REFERENCES public.users(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -198,6 +378,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200329133540'),
 ('20200330074448'),
 ('20200330075033'),
-('20200330075256');
+('20200330075256'),
+('20200331054554'),
+('20200406150803');
 
 
