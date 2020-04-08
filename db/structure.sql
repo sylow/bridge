@@ -140,12 +140,12 @@ ALTER SEQUENCE public.deals_id_seq OWNED BY public.deals.id;
 
 CREATE TABLE public.hands (
     id bigint NOT NULL,
+    deal_id bigint NOT NULL,
     seat public.player_position,
     spades character varying[] DEFAULT '{}'::character varying[],
     hearts character varying[] DEFAULT '{}'::character varying[],
     diamonds character varying[] DEFAULT '{}'::character varying[],
-    clubs character varying[] DEFAULT '{}'::character varying[],
-    player_id bigint NOT NULL
+    clubs character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -322,10 +322,10 @@ CREATE INDEX index_deal_sessions_on_west_id ON public.deal_sessions USING btree 
 
 
 --
--- Name: index_hands_on_player_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_hands_on_deal_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_hands_on_player_id ON public.hands USING btree (player_id);
+CREATE INDEX index_hands_on_deal_id ON public.hands USING btree (deal_id);
 
 
 --
@@ -350,14 +350,6 @@ ALTER TABLE ONLY public.deal_sessions
 
 ALTER TABLE ONLY public.deal_sessions
     ADD CONSTRAINT fk_rails_274be5b53d FOREIGN KEY (east_id) REFERENCES public.users(id);
-
-
---
--- Name: hands fk_rails_3ec9fa93ff; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hands
-    ADD CONSTRAINT fk_rails_3ec9fa93ff FOREIGN KEY (player_id) REFERENCES public.users(id);
 
 
 --

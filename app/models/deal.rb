@@ -9,8 +9,14 @@
 #  updated_at :datetime         not null
 #
 class Deal < ApplicationRecord
-  enum player: PlayerPosition.as_hash
+  enum dealer: PlayerPosition.as_hash
+  enum zone: DealZone.as_hash, _prefix: :zone
+
+  #validations
+  validates :dealer, presence: true
+  validates :zone, presence: true
 
   #associations
+  has_many :hands, dependent: :destroy
   has_many :deal_sessions, dependent: :destroy
 end
