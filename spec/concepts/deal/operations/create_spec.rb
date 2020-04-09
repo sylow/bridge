@@ -13,7 +13,6 @@ RSpec.describe Deal do
     let(:deal) { result[:model]}
     it 'should succeed' do
       Deal::Deal.(params: {deal: deal})
-      
       expect(deal.hands.count).to eq(4)
     end
   end

@@ -11,8 +11,12 @@
 #  deal_id  :bigint           not null
 #
 class Hand < ApplicationRecord
+  enum seat: PlayerPosition.as_hash
+
+  #associations
+  belongs_to :deal
 
   def cards
-    []
+    clubs + diamonds + hearts + spades
   end
 end
