@@ -9,7 +9,7 @@ class Deal::Deal < Trailblazer::Operation
   def deal(ctx, params:, **)
     deck = Deck.new
     PlayerPosition::POSITIONS.each do |seat|
-      Hand::Create.(params: {seat: seat, deal: ctx[:model]})
+      Hand::Create.(params: {seat: seat, deal: ctx[:model]}, deck: deck)
     end 
   end
 end

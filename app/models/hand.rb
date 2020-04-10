@@ -17,6 +17,10 @@ class Hand < ApplicationRecord
   belongs_to :deal
 
   def cards
-    clubs + diamonds + hearts + spades
+    {spades: spades, hearts: hearts, diamonds: diamonds, clubs: clubs}
+  end
+
+  def add_card(card)
+    public_send(card[:type].to_s) << card[:value]
   end
 end
