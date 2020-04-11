@@ -56,3 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dry-types'
 gem 'dry-validation', '0.11.1'
 gem 'trailblazer-rails'
+gem "slim-rails"
+gem "bulma-rails", "~> 0.8.0"

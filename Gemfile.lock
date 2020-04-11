@@ -71,6 +71,8 @@ GEM
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     builder (3.2.4)
+    bulma-rails (0.8.0)
+      sassc (~> 2.0)
     byebug (11.1.1)
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
@@ -231,6 +233,13 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    slim (4.0.1)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 2.0.6, < 2.1)
+    slim-rails (3.2.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 5.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -242,6 +251,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -298,6 +308,7 @@ DEPENDENCIES
   annotate
   awesome_print
   bootsnap (>= 1.4.2)
+  bulma-rails (~> 0.8.0)
   byebug
   dry-types
   dry-validation (= 0.11.1)
@@ -313,6 +324,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (>= 6)
   shoulda-matchers!
+  slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   trailblazer-rails
