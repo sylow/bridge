@@ -35,3 +35,9 @@ module Bridge
     config.active_record.schema_format = :sql
   end
 end
+
+
+Dir[Rails.root + 'app/concepts/deal/*.rb'].each do |file|
+  require file
+end
+
