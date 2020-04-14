@@ -58,7 +58,7 @@ gem 'dry-types'
 gem 'dry-validation', '0.11.1'
 gem 'trailblazer-rails'
 gem 'multi_json'
-gem 'roar-jsonapi'
+gem 'jsonapi-rails'
 
 gem "slim-rails"
 gem "bulma-rails", "~> 0.8.0"

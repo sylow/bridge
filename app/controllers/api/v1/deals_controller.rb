@@ -6,6 +6,12 @@ module Api
         run Deal::Deal, { params: {deal: @model}}
         render json: DealsRepresenter.prepare(@model).as_json
       end
+
+      def show
+        deal = Deal.last
+        run Deal::Deal, { params: {deal: deal}}
+        render jsonapi: deal, include: [:hands, :west]
+      end
     end
   end
 end

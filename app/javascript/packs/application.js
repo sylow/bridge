@@ -5,6 +5,10 @@ require("channels")
 
 import Vue from 'vue/dist/vue.esm'
 
+import axios from 'axios'
+import VueAxios from 'vue-axios' 
+Vue.use(VueAxios, axios)
+
 import TurbolinksAdapter from 'vue-turbolinks'
 Vue.use(TurbolinksAdapter)
 

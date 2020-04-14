@@ -19,4 +19,5 @@ class Deal < ApplicationRecord
   #associations
   has_many :hands, dependent: :destroy
   has_many :deal_sessions, dependent: :destroy
+  has_one :west, -> {hands.where(seat: :w)}, class_name: 'Hand'
 end
