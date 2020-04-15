@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div  v-bind:class="[this.seat == 's' ? 'has-background-light' : '', 'box']">
     <article class="media">
       <!-- <div class="media-left">
         <figure class="image is-64x64">
@@ -11,7 +11,7 @@
           <p>
             <span class='card-type'>S:</span> {{cards.spades}}<br/>
             <span class='card-type'>H:</span> {{cards.hearts}}<br/>
-            <span class='card-type'>T:</span> {{cards.diamonds}}<br/>
+            <span class='card-type'>D:</span> {{cards.diamonds}}<br/>
             <span class='card-type'>C:</span> {{cards.clubs}}<br/>
           </p>
         </div>

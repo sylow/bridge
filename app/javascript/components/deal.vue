@@ -33,12 +33,12 @@
     </nav>    
 
     <div class="columns">
-      <div class="column  is-4 is-offset-4">
-        <hand seat="n" v-bind:deal="this.deal"></hand>
-      </div>
-      <div class="column  is-2 is-offset-2">
+      <div class="column  is-2">
         <information v-bind:deal="this.deal"></information>
-      </div>      
+      </div> 
+      <div class="column  is-4 is-offset-2">
+        <hand seat="n" v-bind:deal="this.deal"></hand>
+      </div>     
     </div>
     <div class="columns">
       <div class="column is-4">
