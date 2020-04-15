@@ -18,6 +18,11 @@ Vue.component('app', App)
 import Hand from '../components/hand.vue'
 Vue.component('hand', Hand)
 
+import Deal from '../components/deal.vue'
+Vue.component('deal', Deal)
+
+import Information from '../components/information.vue'
+Vue.component('information', Information)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
