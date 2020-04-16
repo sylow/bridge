@@ -1,5 +1,5 @@
 class PlayerPosition
-  POSITIONS = %w(n e s w).freeze
+  POSITIONS = %w(north east south west).freeze
 
   def self.as_hash
     Hash[self::POSITIONS.map { |el| [el, el] }]

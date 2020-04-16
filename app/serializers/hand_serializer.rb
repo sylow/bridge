@@ -7,9 +7,6 @@
 #  seat    :enum
 #  deal_id :bigint           not null
 #
-class Hand < ApplicationRecord
-  enum seat: PlayerPosition.as_hash
-
-  #associations
-  belongs_to :deal
+class HandSerializer < BaseSerializer
+  attributes :id, :seat, :cards
 end

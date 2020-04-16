@@ -1,7 +1,7 @@
 class AddPlayerPositions < ActiveRecord::Migration[6.0]
   def up
     execute <<-SQL
-      CREATE TYPE player_position AS ENUM ('n', 'e', 's', 'w');
+      CREATE TYPE player_position AS ENUM ('north', 'east', 'south', 'west');
     SQL
   end
 

@@ -18,8 +18,8 @@ Vue.component('app', App)
 import Hand from '../components/hand.vue'
 Vue.component('hand', Hand)
 
-import Deal from '../components/deal.vue'
-Vue.component('deal', Deal)
+import Game from '../components/game.vue'
+Vue.component('game', Game)
 
 import Information from '../components/information.vue'
 Vue.component('information', Information)

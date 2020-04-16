@@ -37,7 +37,7 @@ module Bridge
 end
 
 
-Dir[Rails.root + 'app/concepts/deal/*.rb'].each do |file|
+Dir[Rails.root + 'app/concepts/*/*.rb'].each do |file|
   require file
 end
 

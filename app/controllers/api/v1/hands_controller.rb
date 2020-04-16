@@ -2,8 +2,8 @@ module Api
   module V1
     class HandsController < ApiController
       def show
-        deal = run(Deal::Find, {id: params[:id]})[:model]
-        render jsonapi: deal, include: [:hands, :west]
+        run Deal::Find, {id: params[:id]}
+        render json: @model
       end
     end
   end

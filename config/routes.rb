@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :deals do
-        resources :hands
-      end
+      resources :games 
+      resources :deals
+      resources :hands
     end
   end
 end

@@ -1,15 +1,9 @@
 module Api
   module V1
     class DealsController < ApiController
-      def create
-        run Deal::Create, { params: {dealer: PlayerPosition::POSITIONS.sample,  zone: DealZone::ZONES.sample} }
-        run Deal::Deal, { params: {deal: @model}}
-        render jsonapi: @model
-      end
-
       def show
-        deal = Deal.last
-        render jsonapi: deal, include: [:hands, :west]
+        run Deal::Find, {params: params}
+        render json: JSONAPI::Serializer.serialize(@model, include: %w(hands), fields: %w(hands.seat)) 
       end
     end
   end

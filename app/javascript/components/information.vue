@@ -4,20 +4,9 @@
       <div class="media-content">
         <div class="content">
           <p>
-            <table class='table is-narrow'>
-              <thead>
-                <tr style='font-size:90%'>
-                  <th>cont</th>
-                  <th>deal</th>
-                  <th>zone</th>
-                </tr>
-              </thead>
-              <tr>
-                <td><span class="tag is-dark">4H</span></td>
-                <td><span class="tag is-light">{{deal.attributes.dealer}}</span></td>
-                <td><span class="tag is-light">{{deal.attributes.zone}}</span></td>
-              </tr>
-            </table>              
+            <span class="tag is-light">4<i class="mdi mdi-cards-heart has-text-danger"></i></span>
+            <span class="tag is-light">{{deal.dealer}}</span>
+            <span class="tag is-light">{{deal.zone}}</span>            
           </p>
         </div>
       </div>
@@ -33,7 +22,7 @@ export default {
   props: ['deal'],
   data(){
     return {
-      zone: this.deal.attributes.zone
+      zone: this.deal.zone
     }
   }
 

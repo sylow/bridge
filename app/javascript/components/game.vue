@@ -20,8 +20,8 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary" @click='newDeal'>
-                <strong>Deal</strong>
+              <a class="button is-light" @click='newGame'>
+                Deal
               </a>
               <a class="button is-light">
                 Log in
@@ -34,23 +34,23 @@
 
     <div class="columns">
       <div class="column  is-2">
-        <information v-bind:deal="this.deal"></information>
+        <information v-bind:deal="deal"></information>
       </div> 
       <div class="column  is-4 is-offset-2">
-        <hand seat="n" v-bind:deal="this.deal"></hand>
+        <hand v-bind:game="game" seat="north" v-bind:deal="deal"></hand>
       </div>     
     </div>
     <div class="columns">
       <div class="column is-4">
-        <hand seat="w" v-bind:deal="this.deal"></hand>
+        <hand v-bind:game="game" seat="east" v-bind:deal="deal"></hand>
       </div>
       <div class="column  is-4 is-offset-4">
-        <hand seat='e' v-bind:deal="this.deal"></hand>
+        <hand v-bind:game="game" seat='west' v-bind:deal="deal"></hand>
       </div>
     </div>    
     <div class="columns">
       <div class="column  is-4 is-offset-4">
-        <hand seat='s' v-bind:deal="this.deal"></hand>
+        <hand v-bind:game="game" seat='south' v-bind:deal="deal"></hand>
       </div>
     </div>
   </div>
@@ -64,19 +64,22 @@ const _ = require('lodash');
 export default {
   data() {
     return {
-      deal: {},
+      game: {},
+    }
+  },
+  computed: {
+    deal: function(){
+      if (_.isEmpty(this.game)) return {};
+
+      return this.game.deal
     }
   },
   methods: {
-    newDeal: function(){
+    newGame: function(){
       axios
-        .post('/api/v1/deals')
-        .then(response=>(this.deal = response.data.data))
-
-    }
+        .post('/api/v1/games')
+        .then(response=>(this.game = response.data))
+    },
   },
-  mounted(){
-    this.newDeal();
-  }
 }
 </script>

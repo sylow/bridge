@@ -1,6 +1,6 @@
 <template>
   <div>
-    <deal></deal>
+    <game></game>
   </div>
   
 </template>

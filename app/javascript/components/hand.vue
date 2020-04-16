@@ -9,15 +9,27 @@
       <div class="media-content">
         <div class="content">
           <p>
-            <span class='card-type'>S:</span> {{cards.spades}}<br/>
-            <span class='card-type'>H:</span> {{cards.hearts}}<br/>
-            <span class='card-type'>D:</span> {{cards.diamonds}}<br/>
-            <span class='card-type'>C:</span> {{cards.clubs}}<br/>
+            <span class='card-type'><i class="mdi mdi-cards-spade"></i></span> 
+            <span v-for="(item, index) in by_type('spade')">
+              {{item}}
+            </span><br/>
+            <span class='card-type'><i class="mdi mdi-cards-heart has-text-danger"></i></span> 
+            <span v-for="(item, index)  in by_type('heart')">
+              {{item}}
+            </span><br/>            
+            <span class='card-type'><i class="mdi mdi-cards-diamond has-text-danger"></i></span> 
+            <span v-for="(item, index)  in by_type('diamond')">
+              {{item}}
+            </span><br/>              
+            <span class='card-type'><i class="mdi mdi-cards-club"></i></span> 
+            <span v-for="(item, index)  in by_type('club')">
+              {{item}}
+            </span><br/>  
           </p>
         </div>
         <nav class="level is-mobile">
           <div class="level-left">
-              <strong>John Smith</strong> 
+              <strong>{{player.name}}</strong> 
           </div>
           <div class="level-right">
               <span>{{this.seat}}</span>
@@ -33,12 +45,22 @@ const axios = require('axios');
 const _ = require('lodash');
 
 export default {
-  props: ['seat', 'deal'],
+  props: ['game', 'seat', 'deal'],
+  methods: {
+    by_type: function(type){
+      return _.map(_.filter(this.hand.cards, {type}), 'value')
+    }
+  },
   computed: {
-    cards: function () {
+    player: function() {
+      if (_.isEmpty(this.game)) return {};
+
+      return this.game[this.seat];
+    },
+    hand: function () {
       if (_.isEmpty(this.deal)) return {};
 
-      return _.find(this.deal.attributes.hands, {seat: this.seat})
+      return _.find(this.deal.hands, {seat: this.seat})
     }
   }  
 }

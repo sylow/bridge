@@ -17,6 +17,6 @@ class Deal < ApplicationRecord
   validates :zone, presence: true
 
   #associations
-  has_many :hands, dependent: :destroy
-  has_many :deal_sessions, dependent: :destroy
+  has_many :games, dependent: :destroy
+  has_many :hands, -> {order(:id)}, dependent: :destroy
 end
