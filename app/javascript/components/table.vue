@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id='app'>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" style="font-size:150%" href="http://sylow.net">
@@ -20,7 +20,7 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-light">
+              <a class="button is-light" @click="newGame">
                 Deal
               </a>
               <a class="button is-light">
@@ -32,30 +32,39 @@
       </div>
     </nav>    
 
+
     <div class="columns">
-      <div class="column  is-4 is-offset-2">{{evenOrOdd}}
-    Clicked: {{ $store.state.count }} times, count is {{ evenOrOdd }}.
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-    <button @click="newGame">Increment if odd</button>
-    <button @click="incrementAsync">Increment async</button>        
+      <div class="column  is-2">
+        <information></information>
+      </div> 
+      <div class="column  is-4 is-offset-2">
+        <hand seat="north"></hand>
+      </div>     
+    </div>
+    <div class="columns">
+      <div class="column is-4">
+        <hand seat="east"></hand>
+      </div>
+      <div class="column  is-4 is-offset-4">
+        <hand seat='west'></hand>
+      </div>
+    </div>    
+    <div class="columns">
+      <div class="column  is-4 is-offset-4">
+        <hand seat='south'></hand>
       </div>
     </div>
   </div>
   
 </template>
-
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: mapGetters([
-    'evenOrOdd'
-  ]),      
+  ]),
   methods: mapActions([
-    'increment',
-    'decrement',
-    'newGame'
+    'newGame',
   ])
 }
 </script>

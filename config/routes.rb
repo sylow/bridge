@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root to: 'plays#show', id: 1
+
   resources :plays
 
   namespace :api do

@@ -5,8 +5,8 @@
         <div class="content">
           <p>
             <span class="tag is-light">4<i class="mdi mdi-cards-heart has-text-danger"></i></span>
-            <span class="tag is-light">{{deal.dealer}}</span>
-            <span class="tag is-light">{{deal.zone}}</span>            
+            <span class="tag is-light">{{game.deal.dealer}}{{game.counter}}</span>
+            <span class="tag is-light">{{game.deal.zone}}</span>            
           </p>
         </div>
       </div>
@@ -15,18 +15,14 @@
 </template>
 
 <script>
-const axios = require('axios');
-const _ = require('lodash');
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  props: ['deal'],
-  data(){
-    return {
-      zone: this.deal.zone
-    }
-  }
-
+  computed: mapGetters([
+    'game'
+  ]),
 }
+
 </script>
 <style scoped>
   .label{
