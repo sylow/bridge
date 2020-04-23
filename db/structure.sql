@@ -111,7 +111,8 @@ CREATE TABLE public.games (
     result integer DEFAULT 0,
     score integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    state character varying
 );
 
 
@@ -392,6 +393,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200330075033'),
 ('20200330075256'),
 ('20200331054554'),
-('20200416022641');
+('20200416022641'),
+('20200423161054');
 
 

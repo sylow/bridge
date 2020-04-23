@@ -6,6 +6,7 @@
 #  contract   :string
 #  result     :integer          default(0)
 #  score      :integer          default(0)
+#  state      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  deal_id    :bigint

@@ -6,6 +6,7 @@
 #  contract   :string
 #  result     :integer          default(0)
 #  score      :integer          default(0)
+#  state      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  deal_id    :bigint
@@ -22,4 +23,23 @@ class Game < ApplicationRecord
   belongs_to :south, class_name: 'User'
   belongs_to :west, class_name: 'User'
   belongs_to :east, class_name: 'User'
+
+  include AASM
+  aasm column: :state do
+    state :created, initial: true
+    state :bidding
+    state :playing
+    state :completed
+
+    event :bid do
+      transition from: :created, to :bidding
+    end
+
+    event :play do
+      transition from: :bidding, to: :playing
+    end
+
+    event :complete do
+      transition from: :playing, to: :completed
+  end
 end

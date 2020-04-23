@@ -63,3 +63,4 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 gem "slim-rails"
 gem 'rack-cors'
+gem 'aasm', '~> 4.12'
