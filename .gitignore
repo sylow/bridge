@@ -34,3 +34,4 @@ yarn-debug.log*
 # Ignore database secrets
 /config/database.yml
 /config/cable.yml
+.env

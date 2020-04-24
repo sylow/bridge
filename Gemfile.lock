@@ -74,6 +74,7 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
     awesome_print (1.8.0)
+    bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
@@ -95,6 +96,10 @@ GEM
       declarative-option (< 0.2.0)
       representable (>= 2.4.0, <= 3.1.0)
       uber (< 0.2.0)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     dry-configurable (0.11.2)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.7)
@@ -140,6 +145,7 @@ GEM
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jsonapi-renderer (0.2.2)
+    jwt (2.2.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -320,13 +326,16 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   annotate
   awesome_print
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
+  dotenv-rails
   dry-types
   dry-validation (= 0.11.1)
   factory_bot_rails
   ffaker
   jbuilder (~> 2.7)
+  jwt
   listen (>= 3.0.5, < 3.2)
   multi_json
   pg (>= 0.18, < 2.0)
