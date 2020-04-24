@@ -32,14 +32,15 @@ class Game < ApplicationRecord
     state :completed
 
     event :bid do
-      transition from: :created, to :bidding
+      transitions from: :created, to: :bidding
     end
 
     event :play do
-      transition from: :bidding, to: :playing
+      transitions from: :bidding, to: :playing
     end
 
     event :complete do
-      transition from: :playing, to: :completed
+      transitions from: :playing, to: :completed
+    end
   end
 end
