@@ -5,6 +5,9 @@ module Api
         user = User.find_by name: params[:id]
         render json: user
       end
+
+      def create
+      end
     end
   end
 end
