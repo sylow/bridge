@@ -10,7 +10,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-vue-app": "^2.0.0",
     "es6-promise": "^4.2.8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
